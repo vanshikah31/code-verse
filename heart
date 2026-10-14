@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Pink Heart</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        canvas {
+            width: min(90vw, 600px);
+            height: min(90vw, 600px);
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="heart"></canvas>
+
+<script>
+    const canvas = document.getElementById("heart");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = 600;
+    canvas.height = 600;
+
+    let t = 0;
+
+    function heartX(t) {
+        return 16 * Math.pow(Math.sin(t), 3);
+    }
+
+    function heartY(t) {
+        return -(13 * Math.cos(t)
+            - 5 * Math.cos(2 * t)
+            - 2 * Math.cos(3 * t)
+            - Math.cos(4 * t));
+    }
+
+    function drawHeart() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const cx = 300;
+        const cy = 300;
+        const scale = 15;
+
+        ctx.beginPath();
+
+        for (let i = 0; i <= t; i += 0.01) {
+            const x = cx + heartX(i) * scale;
+            const y = cy + heartY(i) * scale;
+
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+
+        // Pink glowing effect
+        ctx.strokeStyle = "#ff28c9";
+        ctx.lineWidth = 2;
+        ctx.shadowColor = "#ff00cc";
+        ctx.shadowBlur = 18;
+        ctx.stroke();
+
+        // Bright inner glow
+        ctx.shadowBlur = 5;
+        ctx.strokeStyle = "#ff9bea";
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+
+        ctx.shadowBlur = 0;
+
+        if (t < Math.PI * 2) {
+            t += 0.025;
+            requestAnimationFrame(drawHeart);
+        } else {
+            t = Math.PI * 2;
+        }
+    }
+
+    drawHeart();
+</script>
+
+</body>
+</html>

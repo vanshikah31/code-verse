@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend> Registration form</legend>
+    <form action="/register" method="post">
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required><br>
+        <label for="age">Age: </label>
+        <input type="number" id="Age" name="Age" placeholder="Enter your age" min="1" max="100"><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password"><br>
+        <label for="email">E-mail: </label>
+        <input for="email" name="email" id="email" placeholder="Enter your email"><br>
+        <label for="dob">Date of birth: </label>
+        <input type="date" name="dob" id="dob" placeholder="Enter your date"><br>
+        <label for="Gender">Gender: </label><br>
+        <label for="Gender">Male</label>
+        <input type="radio" name="male" id="male">
+        <label for="Gender">Female</label>
+        <input type="radio" name="female" id="female"><br>
+        <input type="checkbox" name="tandc" id="tandc">
+        <label for="tandc">Agree to Terms and Conditions</label><br>
+        <select name="city" id="city">
+            <option value="hyderabad">Hyderabad</option>
+            <option value="bangalore" selected>Bangalore</option>
+            <option value="Pune">Pune</option>
+        </select><br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset :(">
+        
+    </form>
+    </fieldset>
+</body>
+</html>
